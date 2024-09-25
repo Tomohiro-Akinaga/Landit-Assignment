@@ -7,10 +7,10 @@ const Footer = () => {
   const navItems = ['利用規約', 'プライバシーポリシー']
 
   return (
-    <footer className='bg-black opacity-80 flex justify-between py-4 px-8 border-t-1 border-t-white opacity-20'>
+    <footer className='bg-black opacity-80 flex justify-between py-4 px-8 border-t-[1px] border-white-20'>
       <nav className='flex gap-6'>
         {navItems.map((v, i) => (
-          <Link href='#' key={i} className='text-white font-normal text-xs gap-2 flex items-center leading-18'>
+          <Link href='#' key={i} className='text-white font-normal text-xs gap-2 flex items-center leading-[18px]'>
             {v}
             <FontAwesomeIcon icon={faWindowRestore} className='opacity-20 h-3' />
           </Link>
