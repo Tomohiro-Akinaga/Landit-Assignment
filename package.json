@@ -17,7 +17,8 @@
     "@fortawesome/react-fontawesome": "^0.2.2",
     "next": "14.2.13",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "recharts": "^2.13.0-alpha.5"
   },
   "devDependencies": {
     "@chromatic-com/storybook": "^1.9.0",
