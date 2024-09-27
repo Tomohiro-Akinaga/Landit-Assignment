@@ -8,6 +8,7 @@ import Graph from '@/components/organisms/Graph'
 
 export default function Home() {
   const [graphData, setGraphData] = useState<any>(null)
+  const [averagePropertyPrice, setAveragePropertyPrice] = useState<any>(null)
 
   return (
     <main className='relative flex-1 before:content-[""] before:block before:h-full before:bg-[url("/assets/img/bg.png")]'>
@@ -17,8 +18,8 @@ export default function Home() {
           取引価格 <span className='pl-[8px] text-[13.71px] h-[33px] flex items-end'>※取引面積1㎡あたり</span>
         </h2>
         <div className='flex pt-10 gap-6'>
-          <Graph graphData={graphData} />
-          <Form setGraphData={setGraphData} />
+          <Graph graphData={graphData} averagePropertyPrice={averagePropertyPrice} />
+          <Form setGraphData={setGraphData} setAveragePropertyPrice={setAveragePropertyPrice} />
         </div>
       </div>
     </main>

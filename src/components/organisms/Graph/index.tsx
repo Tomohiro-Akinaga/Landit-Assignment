@@ -4,8 +4,10 @@ import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Label } from 'r
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { faShapes } from '@fortawesome/free-solid-svg-icons'
+import getAveragePropertyPrice from '@/utils/getAveragePropertyPrice'
 
 interface Props {
+  averagePropertyPrice: number
   graphData: {
     displayType: string
     prefName: string
@@ -16,7 +18,7 @@ interface Props {
   }
 }
 
-const Graph = ({ graphData }: Props) => {
+const Graph = ({ graphData, averagePropertyPrice }: Props) => {
   const prefName = graphData ? graphData.prefName : '都道府県'
   const year = graphData ? graphData.years[0].year : ' - '
   const value = graphData ? graphData.years[0].value : '0'
@@ -33,13 +35,13 @@ const Graph = ({ graphData }: Props) => {
       case '5':
         return '林地'
       default:
-        return '表示種類'
+        return '種類'
     }
   }, [graphData])
 
   const data = [
     { label: prefName, amt: value },
-    { label: '全国平均', amt: 34567 },
+    { label: '全国平均', amt: averagePropertyPrice },
   ]
 
   return (
@@ -57,12 +59,12 @@ const Graph = ({ graphData }: Props) => {
         <BarChart data={data} margin={{ top: 33 }}>
           <defs>
             <linearGradient id='prefecture' gradientTransform='rotate(156.04)'>
-              <stop offset='0%' stop-color='#706D65' stop-opacity='1' />
-              <stop offset='100%' stop-color='#57544C' stop-opacity='1' />
+              <stop offset='0%' stopColor='#706D65' stopOpacity='1' />
+              <stop offset='100%' stopColor='#57544C' stopOpacity='1' />
             </linearGradient>
             <linearGradient id='average' gradientTransform='rotate(136.95)'>
-              <stop offset='24.03%' stop-color='#009984' stop-opacity='1' />
-              <stop offset='75.73%' stop-color='#97BF4A' stop-opacity='1' />
+              <stop offset='24.03%' stopColor='#009984' stopOpacity='1' />
+              <stop offset='75.73%' stopColor='#97BF4A' stopOpacity='1' />
             </linearGradient>
           </defs>
           <XAxis

@@ -9,12 +9,14 @@ import { DISPLAY_TYPE } from '@/constants/displayType'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { faShapes } from '@fortawesome/free-solid-svg-icons'
+import getAveragePropertyPrice from '@/utils/getAveragePropertyPrice'
 
 interface Props {
   setGraphData: (data: any) => void
+  setAveragePropertyPrice: (data: any) => void
 }
 
-const Form = ({ setGraphData }: Props) => {
+const Form = ({ setGraphData, setAveragePropertyPrice }: Props) => {
   const [year, setYear] = useState<string>('2021')
   const [prefCode, setPrefCode] = useState<number>(1)
   const [displayType, setDisplayType] = useState<number>(1)
@@ -42,6 +44,9 @@ const Form = ({ setGraphData }: Props) => {
 
     const data = await res.json()
     setGraphData(data.result)
+
+    const price = await getAveragePropertyPrice(Number(year), displayType)
+    setAveragePropertyPrice(price)
   }
 
   const options = useMemo(() => {
