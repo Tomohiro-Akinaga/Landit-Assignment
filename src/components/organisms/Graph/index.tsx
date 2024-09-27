@@ -1,5 +1,9 @@
+import Icon from '@/components/atoms/Icon'
 import React, { useMemo } from 'react'
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Label } from 'recharts'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
+import { faShapes } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
   graphData: {
@@ -39,11 +43,15 @@ const Graph = ({ graphData }: Props) => {
   ]
 
   return (
-    <div className='w-full flex gap-20 flex-col py-28 '>
-      <div className='w-full'>
-        <p>{prefName}</p>
-        <p>{`${year}年`}</p>
-        <p>{displayType}</p>
+    <div className='w-full flex gap-20 flex-col py-28 px-[372px]'>
+      <div className='w-full flex gap-12 justify-center'>
+        <Icon icon={faLocationDot} color={'primary'} fontSize={24} iconSize={18} gap={12}>
+          {prefName}
+        </Icon>
+        <Icon icon={faCalendarCheck} color={'primary'} fontSize={24} iconSize={18} gap={12}>{`${year}年`}</Icon>
+        <Icon icon={faShapes} color={'primary'} fontSize={24} iconSize={18} gap={12}>
+          {displayType}
+        </Icon>
       </div>
       <ResponsiveContainer>
         <BarChart data={data} margin={{ top: 33 }}>

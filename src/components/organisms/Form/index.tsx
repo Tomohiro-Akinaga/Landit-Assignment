@@ -36,13 +36,8 @@ const Form = ({ setGraphData }: Props) => {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const res = await fetch(
-      `https://opendata.resas-portal.go.jp/api/v1/townPlanning/estateTransaction/bar?year=${year}&prefCode=${prefCode}&cityCode=-&displayType=${displayType}`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-          'X-API-KEY': process.env.NEXT_PUBLIC_RESAS_API_KEY || '',
-        },
-      }
+      `${process.env.NEXT_PUBLIC_RESAS_API_URL}?year=${year}&prefCode=${prefCode}&cityCode=-&displayType=${displayType}`,
+      { headers: { 'Content-Type': 'application/json', 'X-API-KEY': process.env.NEXT_PUBLIC_RESAS_API_KEY || '' } }
     )
 
     const data = await res.json()
@@ -57,14 +52,36 @@ const Form = ({ setGraphData }: Props) => {
   return (
     <form className='p-6 bg-[#F0F3F5] flex flex-col' onSubmit={handleSubmit}>
       <p className='pb-6 border-b border-[#E5E5E5]'>表示内容を確認</p>
-      <SelectBox label={'場所'} options={PREF_CODE.map((v) => v.name)} onChange={handlePrefCode} icon={faLocationDot} />
-      <SelectBox label={'年度'} options={options} onChange={handleYear} icon={faCalendarCheck} />
+      <SelectBox
+        label={'場所'}
+        options={PREF_CODE.map((v) => v.name)}
+        onChange={handlePrefCode}
+        icon={faLocationDot}
+        color='secondary'
+        fontSize={13}
+        iconSize={14}
+        gap={6}
+      />
+      <SelectBox
+        label={'年度'}
+        options={options}
+        onChange={handleYear}
+        icon={faCalendarCheck}
+        color='secondary'
+        fontSize={13}
+        iconSize={14}
+        gap={6}
+      />
       <CheckBox
         checkBoxLabels={DISPLAY_TYPE.map((v) => v.label)}
         onChange={handleType}
         name={'type'}
         iconLabel={'種類'}
         icon={faShapes}
+        color={'secondary'}
+        fontSize={13}
+        iconSize={14}
+        gap={6}
       />
       <div className='mt-auto'>
         <Button type={'submit'}>データをダウンロード</Button>

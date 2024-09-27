@@ -9,12 +9,18 @@ interface Props {
   name: string
   iconLabel: string
   icon: IconProp
+  color: string
+  fontSize: number
+  iconSize: number
+  gap: number
 }
 
-const CheckBox = ({ checkBoxLabels, onChange, name, iconLabel, icon }: Props) => {
+const CheckBox = ({ checkBoxLabels, onChange, name, iconLabel, icon, color, fontSize, iconSize, gap }: Props) => {
   return (
     <div className='flex items-start gap-6 pt-6'>
-      <Icon icon={icon}>{iconLabel}</Icon>
+      <Icon icon={icon} color={color} fontSize={fontSize} iconSize={iconSize} gap={gap}>
+        {iconLabel}
+      </Icon>
       <div className='flex flex-col gap-3'>
         {checkBoxLabels.map((v, i) => (
           <RadioButton onChange={onChange} key={i} value={v} name={name} checked={i === 0}>
