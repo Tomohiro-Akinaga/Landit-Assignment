@@ -39,7 +39,7 @@ const Graph = ({ graphData }: Props) => {
   ]
 
   return (
-    <div className='w-full flex gap-20 flex-col py-28 px-[372px]'>
+    <div className='w-full flex gap-20 flex-col py-28 '>
       <div className='w-full'>
         <p>{prefName}</p>
         <p>{`${year}年`}</p>

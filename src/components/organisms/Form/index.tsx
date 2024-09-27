@@ -1,10 +1,14 @@
 'use client'
 
+import React, { useState, useMemo } from 'react'
 import CheckBox from '@/components/molecules/CheckBox'
 import SelectBox from '@/components/molecules/SelectBox'
-import React, { useState, useMemo } from 'react'
+import Button from '@/components/atoms/Button'
 import { PREF_CODE } from '@/constants/prefCode'
 import { DISPLAY_TYPE } from '@/constants/displayType'
+import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
+import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
+import { faShapes } from '@fortawesome/free-solid-svg-icons'
 
 interface Props {
   setGraphData: (data: any) => void
@@ -36,7 +40,7 @@ const Form = ({ setGraphData }: Props) => {
       {
         headers: {
           'Content-Type': 'application/json',
-          'X-API-KEY': process.env.NEXT_PUBLIC_RESAS_API_KEY as string,
+          'X-API-KEY': process.env.NEXT_PUBLIC_RESAS_API_KEY || '',
         },
       }
     )
@@ -51,12 +55,20 @@ const Form = ({ setGraphData }: Props) => {
   }, [])
 
   return (
-    <form className='p-6 w-fit bg-[#F0F3F5]' onSubmit={handleSubmit}>
-      <p className='pb-6'>表示内容を確認</p>
-      <SelectBox label={'場所'} options={PREF_CODE.map((v) => v.name)} onChange={handlePrefCode} />
-      <SelectBox label={'年度'} options={options} onChange={handleYear} />
-      <CheckBox labels={DISPLAY_TYPE.map((v) => v.label)} onChange={handleType} name={'type'} />
-      <button type='submit'>データをダウンロード</button>
+    <form className='p-6 bg-[#F0F3F5] flex flex-col' onSubmit={handleSubmit}>
+      <p className='pb-6 border-b border-[#E5E5E5]'>表示内容を確認</p>
+      <SelectBox label={'場所'} options={PREF_CODE.map((v) => v.name)} onChange={handlePrefCode} icon={faLocationDot} />
+      <SelectBox label={'年度'} options={options} onChange={handleYear} icon={faCalendarCheck} />
+      <CheckBox
+        checkBoxLabels={DISPLAY_TYPE.map((v) => v.label)}
+        onChange={handleType}
+        name={'type'}
+        iconLabel={'種類'}
+        icon={faShapes}
+      />
+      <div className='mt-auto'>
+        <Button type={'submit'}>データをダウンロード</Button>
+      </div>
     </form>
   )
 }
