@@ -17,7 +17,7 @@ export default function Home() {
           取引価格 <span className='pl-[8px] text-[13.71px] h-[33px] flex items-end'>※取引面積1㎡あたり</span>
         </h2>
         <div className='flex pt-10 gap-6'>
-          <Graph />
+          <Graph graphData={graphData} />
           <Form setGraphData={setGraphData} />
         </div>
       </div>
