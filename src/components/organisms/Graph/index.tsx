@@ -56,9 +56,13 @@ const Graph = ({ graphData }: Props) => {
       <ResponsiveContainer>
         <BarChart data={data} margin={{ top: 33 }}>
           <defs>
-            <linearGradient id='gradationColor' x1='0%' y1='0%' x2='100%' y2='100%'>
-              <stop offset='0%' stopColor='#ff0000' />
-              <stop offset='100%' stopColor='#ffa500' />
+            <linearGradient id='prefecture' gradientTransform='rotate(156.04)'>
+              <stop offset='0%' stop-color='#706D65' stop-opacity='1' />
+              <stop offset='100%' stop-color='#57544C' stop-opacity='1' />
+            </linearGradient>
+            <linearGradient id='average' gradientTransform='rotate(136.95)'>
+              <stop offset='24.03%' stop-color='#009984' stop-opacity='1' />
+              <stop offset='75.73%' stop-color='#97BF4A' stop-opacity='1' />
             </linearGradient>
           </defs>
           <XAxis
@@ -83,7 +87,7 @@ const Graph = ({ graphData }: Props) => {
           </YAxis>
           <Bar dataKey='amt' barSize={200}>
             {data.map((_, i) => (
-              <Cell key={`cell-${i}`} fill={'gradationColor'} />
+              <Cell key={`cell-${i}`} fill={`url(#${i === 0 ? 'average' : 'prefecture'})`} />
             ))}
           </Bar>
         </BarChart>
