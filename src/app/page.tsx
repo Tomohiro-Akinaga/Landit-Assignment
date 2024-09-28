@@ -7,18 +7,15 @@ import React, { useState } from 'react'
 import Graph from '@/components/organisms/Graph'
 
 export type RealEstateDataType = {
-  prefCode: string
-  prefName: string
+  year: string
+  prefecture?: string
   displayType: string
-  years: {
-    year: number
-    value: number
-  }[]
+  price: string
 }
 
 export default function Home() {
-  const [realEstateData, setRealEstateData] = useState<RealEstateDataType | undefined>(undefined)
-  const [averageRealEstatePrice, setAverageRealEstatePrice] = useState<number>(0)
+  const [realEstateData, setRealEstateData] = useState<RealEstateDataType>()
+  const [averageRealEstateData, setAverageRealEstateData] = useState<RealEstateDataType>()
 
   return (
     <main className='relative flex-1 before:content-[""] before:block before:h-full before:bg-[url("/assets/img/bg.png")]'>
@@ -28,8 +25,8 @@ export default function Home() {
           取引価格 <span className='pl-[8px] text-[13.71px] h-[33px] flex items-end'>※取引面積1㎡あたり</span>
         </h2>
         <div className='flex pt-10 gap-6'>
-          <Graph realEstateData={realEstateData} averageRealEstatePrice={averageRealEstatePrice} />
-          <Form setRealEstateData={setRealEstateData} setAverageRealEstatePrice={setAverageRealEstatePrice} />
+          <Graph realEstateData={realEstateData} averageRealEstateData={averageRealEstateData} />
+          <Form setRealEstateData={setRealEstateData} setAverageRealEstateData={setAverageRealEstateData} />
         </div>
       </div>
     </main>
