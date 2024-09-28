@@ -1,6 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { PREF_CODES } from '@/constants/prefCode'
-import { console } from 'inspector'
 import { DISPLAY_TYPE } from '@/constants/displayType'
 
 export async function GET(req: NextRequest) {
@@ -16,7 +15,7 @@ export async function GET(req: NextRequest) {
           {
             headers: {
               'content-type': 'application/json',
-              'X-API-KEY': process.env.RESAS_API_KEY || '',
+              'X-API-KEY': process.env.RESAS_API_KEY ?? '',
             },
           }
         )

@@ -11,7 +11,7 @@ export async function GET(req: NextRequest) {
   try {
     const res = await fetch(
       `${process.env.RESAS_API_URL}?year=${year}&prefCode=${prefCode}&cityCode=-&displayType=${displayType}`,
-      { headers: { 'content-type': 'application/json', 'X-API-KEY': process.env.RESAS_API_KEY || '' } }
+      { headers: { 'content-type': 'application/json', 'X-API-KEY': process.env.RESAS_API_KEY ?? '' } }
     )
     const data = await res.json()
 
