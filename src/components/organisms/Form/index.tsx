@@ -9,14 +9,15 @@ import { DISPLAY_TYPE } from '@/constants/displayType'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { faShapes } from '@fortawesome/free-solid-svg-icons'
-import getAveragePropertyPrice from '@/utils/getAveragePropertyPrice'
+import getAverageRealEstatePrice from '@/utils/getAverageRealEstatePrice'
+import { RealEstateDataType } from '@/app/page'
 
 interface Props {
-  setGraphData: (data: any) => void
-  setAveragePropertyPrice: (data: any) => void
+  setRealEstateData: (data: RealEstateDataType) => void
+  setAverageRealEstatePrice: (price: number) => void
 }
 
-const Form = ({ setGraphData, setAveragePropertyPrice }: Props) => {
+const Form = ({ setRealEstateData, setAverageRealEstatePrice }: Props) => {
   const [year, setYear] = useState<string>('2021')
   const [prefCode, setPrefCode] = useState<number>(1)
   const [displayType, setDisplayType] = useState<number>(1)
@@ -43,10 +44,10 @@ const Form = ({ setGraphData, setAveragePropertyPrice }: Props) => {
     )
 
     const data = await res.json()
-    setGraphData(data.result)
+    setRealEstateData(data.result)
 
-    const price = await getAveragePropertyPrice(Number(year), displayType)
-    setAveragePropertyPrice(price)
+    const price = await getAverageRealEstatePrice(Number(year), displayType)
+    setAverageRealEstatePrice(price)
   }
 
   const options = useMemo(() => {

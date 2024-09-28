@@ -4,26 +4,19 @@ import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Label } from 'r
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { faShapes } from '@fortawesome/free-solid-svg-icons'
-import getAveragePropertyPrice from '@/utils/getAveragePropertyPrice'
+import { RealEstateDataType } from '@/app/page'
 
 interface Props {
-  averagePropertyPrice: number
-  graphData: {
-    displayType: string
-    prefName: string
-    years: {
-      year: number
-      value: number
-    }[]
-  }
+  averageRealEstatePrice: number
+  realEstateData: RealEstateDataType | undefined
 }
 
-const Graph = ({ graphData, averagePropertyPrice }: Props) => {
-  const prefName = graphData ? graphData.prefName : '都道府県'
-  const year = graphData ? graphData.years[0].year : ' - '
-  const value = graphData ? graphData.years[0].value : '0'
+const Graph = ({ realEstateData, averageRealEstatePrice }: Props) => {
+  const prefName = realEstateData ? realEstateData.prefName : '都道府県'
+  const year = realEstateData ? realEstateData.years[0].year : ' - '
+  const value = realEstateData ? realEstateData.years[0].value : '0'
   const displayType = useMemo(() => {
-    switch (graphData?.displayType) {
+    switch (realEstateData?.displayType) {
       case '1':
         return '土地（住宅地）'
       case '2':
@@ -37,11 +30,11 @@ const Graph = ({ graphData, averagePropertyPrice }: Props) => {
       default:
         return '種類'
     }
-  }, [graphData])
+  }, [realEstateData])
 
   const data = [
     { label: prefName, amt: value },
-    { label: '全国平均', amt: averagePropertyPrice },
+    { label: '全国平均', amt: averageRealEstatePrice },
   ]
 
   return (

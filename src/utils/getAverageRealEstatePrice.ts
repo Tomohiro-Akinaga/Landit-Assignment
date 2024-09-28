@@ -1,4 +1,4 @@
-export default async function getAveragePropertyPrice(year: number, displayType: number) {
+export default async function getAverageRealEstatePrice(year: number, displayType: number) {
   const prefCodes = Array.from({ length: 47 }, (_, i) => i + 1)
 
   const res = await Promise.all(

@@ -1,8 +1,12 @@
 import React, { ComponentPropsWithoutRef, PropsWithChildren } from 'react'
 
-interface Props extends ComponentPropsWithoutRef<'input'> {}
-
-const RadioButton = ({ children, onChange, value, name, checked }: PropsWithChildren<Props>) => {
+const RadioButton = ({
+  children,
+  onChange,
+  value,
+  name,
+  checked,
+}: PropsWithChildren<ComponentPropsWithoutRef<'input'>>) => {
   return (
     <label className='flex items-center gap-2 text-[13px]'>
       <input
