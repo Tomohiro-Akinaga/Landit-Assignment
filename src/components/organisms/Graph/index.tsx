@@ -1,5 +1,5 @@
 import Icon from '@/components/atoms/Icon'
-import React, { useMemo } from 'react'
+import React from 'react'
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, Cell, Label } from 'recharts'
 import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
@@ -17,8 +17,6 @@ const Graph = ({ realEstateData, averageRealEstateData }: Props) => {
   const price = realEstateData ? realEstateData.price : '0'
   const displayType = realEstateData ? realEstateData.displayType : '種類'
   const averagePrice = averageRealEstateData ? averageRealEstateData.price : ''
-
-  console.log(price, averagePrice)
 
   const data = [
     { label: prefecture, amt: price },
@@ -54,7 +52,16 @@ const Graph = ({ realEstateData, averageRealEstateData }: Props) => {
             className='[&>g>g>line]:stroke-none [&>g>g>text:first-child]:font-bold'
             dy={8}
           />
-          <YAxis width={100} dx={-8} stroke='#fff' type='number' domain={[0, 'auto']} tickCount={11} fontSize={12}>
+          <YAxis
+            width={100}
+            dx={-8}
+            stroke='#fff'
+            type='number'
+            domain={[0, 'auto']}
+            tickCount={11}
+            fontSize={12}
+            tickFormatter={(v) => `${v.toLocaleString()}`}
+          >
             <Label position={'top'} fill='white' dx={30} dy={-13} fontSize={12}>
               （円/㎡）
             </Label>

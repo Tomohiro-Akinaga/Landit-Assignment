@@ -13,7 +13,8 @@ interface Props {
 const Icon = ({ icon, children, color, fontSize, iconSize, gap }: PropsWithChildren<Props>) => {
   return (
     <span
-      className={`flex gap-[${gap}px] items-center w-max text-[${fontSize}px] leading-5 text-[var(--${color}-color)]`}
+      style={{ gap: `${gap}px`, fontSize: `${fontSize}px`, color: `var(--${color}-color)` }}
+      className='flex items-center w-max leading-5'
     >
       <FontAwesomeIcon icon={icon} className={`w-[${iconSize}px]`} />
       {children}
