@@ -5,16 +5,18 @@ import { IconProp } from '@fortawesome/fontawesome-svg-core'
 interface Props {
   icon: IconProp
   color: string
-  fontSize: number
-  iconSize: number
-  gap: number
+  size: 'small' | 'large'
 }
 
-const Icon = ({ icon, children, color, fontSize, iconSize, gap }: PropsWithChildren<Props>) => {
+const Icon = ({ icon, children, color, size }: PropsWithChildren<Props>) => {
+  const fontSize = size === 'small' ? '14px' : '24px'
+  const iconSize = size === 'small' ? '14px' : '18px'
+  const gap = size === 'small' ? '6px' : '12px'
+
   return (
     <span
-      style={{ gap: `${gap}px`, fontSize: `${fontSize}px`, color: `var(--${color}-color)` }}
-      className='flex items-center w-max leading-5'
+      style={{ gap: gap, fontSize: fontSize, color: `var(--${color}-color)` }}
+      className={`flex items-center w-max leading-5`}
     >
       <FontAwesomeIcon icon={icon} className={`w-[${iconSize}px]`} />
       {children}

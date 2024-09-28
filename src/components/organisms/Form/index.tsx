@@ -61,9 +61,7 @@ const Form = ({ setRealEstateData, setAverageRealEstateData }: Props) => {
         onChange={handlePrefCode}
         icon={faLocationDot}
         color='secondary'
-        fontSize={13}
-        iconSize={14}
-        gap={6}
+        size='small'
       />
       <SelectBox
         label={'年度'}
@@ -71,20 +69,16 @@ const Form = ({ setRealEstateData, setAverageRealEstateData }: Props) => {
         onChange={handleYear}
         icon={faCalendarCheck}
         color='secondary'
-        fontSize={13}
-        iconSize={14}
-        gap={6}
+        size='small'
       />
       <CheckBox
         checkBoxLabels={DISPLAY_TYPE.map((v) => v.label)}
         onChange={handleType}
-        name={'type'}
         iconLabel={'種類'}
         icon={faShapes}
         color={'secondary'}
-        fontSize={13}
-        iconSize={14}
-        gap={6}
+        size='small'
+        name={'displayType'}
       />
       <div className='mt-auto'>
         <Button type={'submit'}>データをダウンロード</Button>

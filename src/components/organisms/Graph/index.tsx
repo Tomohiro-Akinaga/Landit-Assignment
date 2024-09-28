@@ -26,11 +26,11 @@ const Graph = ({ realEstateData, averageRealEstateData }: Props) => {
   return (
     <div className='w-full flex gap-20 flex-col py-28 px-[372px]'>
       <div className='w-full flex gap-12 justify-center'>
-        <Icon icon={faLocationDot} color={'primary'} fontSize={24} iconSize={18} gap={12}>
+        <Icon icon={faLocationDot} color={'primary'} size='large'>
           {prefecture}
         </Icon>
-        <Icon icon={faCalendarCheck} color={'primary'} fontSize={24} iconSize={18} gap={12}>{`${year}年`}</Icon>
-        <Icon icon={faShapes} color={'primary'} fontSize={24} iconSize={18} gap={12}>
+        <Icon icon={faCalendarCheck} color={'primary'} size='large'>{`${year}年`}</Icon>
+        <Icon icon={faShapes} color={'primary'} size='large'>
           {displayType}
         </Icon>
       </div>
