@@ -48,8 +48,8 @@ const Form = ({ setRealEstateData, setAverageRealEstateData }: Props) => {
   }
 
   const options = useMemo(() => {
-    const length = 2022 - 1900
-    return Array.from({ length }, (_, i) => String(1900 + i)).reverse()
+    const length = 2022 - 2009
+    return Array.from({ length }, (_, i) => String(2009 + i)).reverse()
   }, [])
 
   return (
