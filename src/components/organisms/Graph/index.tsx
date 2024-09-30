@@ -5,13 +5,15 @@ import { faLocationDot } from '@fortawesome/free-solid-svg-icons'
 import { faCalendarCheck } from '@fortawesome/free-solid-svg-icons'
 import { faShapes } from '@fortawesome/free-solid-svg-icons'
 import { RealEstateDataType } from '@/app/page'
+import Loading from '@/components/organisms/Loading'
 
 interface Props {
   averageRealEstateData: RealEstateDataType | undefined
   realEstateData: RealEstateDataType | undefined
+  isLoading: boolean
 }
 
-const Graph = ({ realEstateData, averageRealEstateData }: Props) => {
+const Graph = ({ realEstateData, averageRealEstateData, isLoading }: Props) => {
   const prefecture = realEstateData ? realEstateData.prefecture : '都道府県'
   const year = realEstateData ? realEstateData.year : ' - '
   const price = realEstateData ? realEstateData.price : '0'
@@ -24,7 +26,8 @@ const Graph = ({ realEstateData, averageRealEstateData }: Props) => {
   ]
 
   return (
-    <div className='w-full flex gap-20 flex-col py-28 px-[372px]'>
+    <div className='w-full flex gap-20 flex-col py-28 px-[372px] relative'>
+      {isLoading && <Loading />}
       <div className='w-full flex gap-12 justify-center'>
         <Icon icon={faLocationDot} color={'primary'} size='large'>
           {prefecture}

@@ -14,9 +14,10 @@ import { RealEstateDataType } from '@/app/page'
 interface Props {
   setRealEstateData: (data: RealEstateDataType) => void
   setAverageRealEstateData: (data: RealEstateDataType) => void
+  setIsLoading: (isLoading: boolean) => void
 }
 
-const Form = ({ setRealEstateData, setAverageRealEstateData }: Props) => {
+const Form = ({ setRealEstateData, setAverageRealEstateData, setIsLoading }: Props) => {
   const [year, setYear] = useState<string>('2021')
   const [prefCode, setPrefCode] = useState<string>('1')
   const [displayType, setDisplayType] = useState<string>('1')
@@ -37,6 +38,7 @@ const Form = ({ setRealEstateData, setAverageRealEstateData }: Props) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    setIsLoading(true)
     const res = await fetch(`/api/prefecture?year=${year}&prefCode=${prefCode}&displayType=${displayType}`)
     const data = await res.json()
 
@@ -45,6 +47,7 @@ const Form = ({ setRealEstateData, setAverageRealEstateData }: Props) => {
 
     setRealEstateData(data)
     setAverageRealEstateData(averageData)
+    setIsLoading(false)
   }
 
   const options = useMemo(() => {
