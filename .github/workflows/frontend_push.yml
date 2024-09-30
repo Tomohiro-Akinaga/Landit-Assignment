@@ -16,17 +16,14 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
 
-      - name: Install dependencies
-        run: npm i
+      - name: Install packages
+        run: npm install
 
-      - name: Run tests
-        run: npm run test -- --coverage
+      - name: Run Vitest
+        run: npm run test -- --run
 
-      - name: Upload coverage report
-        uses: actions/upload-artifact@v3
-        with:
-          name: coverage-report
-          path: coverage
+      - name: Check ESLint
+        run: npm run lint
 
-      - name: Build
+      - name: Check Build
         run: npm run build
